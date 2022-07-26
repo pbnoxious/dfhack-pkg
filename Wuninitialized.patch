@@ -1,0 +1,13 @@
+diff --git a/depends/CMakeLists.txt b/depends/CMakeLists.txt
+index 0fcb4ca3c..28fbc99ce 100644
+--- a/depends/CMakeLists.txt
++++ b/depends/CMakeLists.txt
+@@ -14,7 +14,7 @@ option(JSONCPP_WITH_TESTS "Compile and (for jsoncpp_check) run JsonCpp test exec
+ option(JSONCPP_WITH_POST_BUILD_UNITTEST "Automatically run unit-tests as a post build step" OFF)
+ add_subdirectory(jsoncpp-sub EXCLUDE_FROM_ALL)
+ if(UNIX)
+-    set_target_properties(jsoncpp_lib_static PROPERTIES COMPILE_FLAGS "-Wno-deprecated-declarations")
++    set_target_properties(jsoncpp_lib_static PROPERTIES COMPILE_FLAGS "-Wno-deprecated-declarations -Wno-uninitialized")
+ endif()
+ # build clsocket static and only as a dependency. Setting those options here overrides its own default settings.
+ option(CLSOCKET_SHARED "Build clsocket lib as shared." OFF)

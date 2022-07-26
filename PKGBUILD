@@ -16,10 +16,12 @@ makedepends=('cmake' 'git' 'python-sphinx' 'perl-xml-libxml' 'perl-xml-libxslt')
 conflicts=('dfhack-bin' 'dfhack-git')
 
 source=("$pkgname::git+https://github.com/DFHack/dfhack#tag=$_pkgver"
+        Wuninitialized.patch
         dfhack.sh
         dfhack-run.sh)
 
 md5sums=('SKIP'
+         '25e320dd43d29f64c746b962b57cc145'
          '81f5909c1a32391679f968e40f24d5ca'
          '3853c6f890d3541f710f2c4833a9e696')
 
@@ -30,6 +32,8 @@ prepare() {
   git remote set-url origin https://github.com/DFHack/dfhack
   git submodule sync
   git submodule update --init
+
+  patch --forward --strip=1 --input="${srcdir}/Wuninitialized.patch"
 }
 
 build() {
